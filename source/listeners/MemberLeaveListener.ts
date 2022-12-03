@@ -13,7 +13,7 @@ export class MemberLeaveListener extends Listener {
 			"emitter": "client",
 			"event": "guildMemberRemove"
 		});
-		this.ID = config.get()["discord"]["channelID"];
+		this.ID = config.get()["leave"]["channelID"];
 		this.discordBot = discordBot;
 	}
 

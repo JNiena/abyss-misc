@@ -1,12 +1,11 @@
-import {Listener} from "discord-akairo";
-import {GuildMember} from "discord.js";
-import {Config} from "../Config";
-import {DiscordBot} from "../DiscordBot";
+import { Listener } from "discord-akairo";
+import { GuildMember } from "discord.js";
+import { Config } from "../Config";
+import { DiscordBot } from "../DiscordBot";
 
 export class MemberLeaveListener extends Listener {
 
 	private ID: string;
-	private config: Config;
 	private discordBot: DiscordBot;
 
 	public constructor(config: Config, discordBot: DiscordBot) {
@@ -15,7 +14,6 @@ export class MemberLeaveListener extends Listener {
 			"event": "guildMemberRemove"
 		});
 		this.ID = config.get()["discord"]["channelID"];
-		this.config = config;
 		this.discordBot = discordBot;
 	}
 

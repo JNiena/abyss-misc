@@ -1,24 +1,29 @@
 import { Listener } from "discord-akairo";
-import { GuildMember } from "discord.js";
-import { Config } from "../Config";
+import { GuildMember, MessageEmbed } from "discord.js";
 import { DiscordBot } from "../DiscordBot";
+import { Timestamp } from "../Timestamp";
 
 export class MemberLeaveListener extends Listener {
-
-	private ID: string;
 	private discordBot: DiscordBot;
 
-	public constructor(config: Config, discordBot: DiscordBot) {
+	public constructor(discordBot: DiscordBot) {
 		super("guildMemberRemove", {
 			"emitter": "client",
 			"event": "guildMemberRemove"
 		});
-		this.ID = config.get()["leave"]["channelID"];
 		this.discordBot = discordBot;
 	}
 
 	public exec(member: GuildMember): any {
-		this.discordBot.send(`**${member.user.username + (member.nickname ? ` (IGN: ${member.nickname})` : "")} has left the guild.**`, this.ID).then();
+		const embed: MessageEmbed = new MessageEmbed()
+		.setTitle(`${member.user.username} has left the guild!`)
+		.setColor("")
+		.addField("Username", `${member.user.username}#${member.user.discriminator}`, true)
+		.setFooter(`${Timestamp.now()}`)
+		.setThumbnail(`${member.user.avatarURL()}`);
+		if (member.nickname) {
+			embed.addField("IGN", `${member.nickname}`, true);
+		}
+		this.discordBot.sendEmbed(embed).then();
 	}
-
 }

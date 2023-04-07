@@ -17,7 +17,7 @@ export class MemberLeaveListener extends Listener {
 	public exec(member: GuildMember): any {
 		const embed: MessageEmbed = new MessageEmbed()
 		.setTitle(`${member.user.username} has left the guild!`)
-		.setColor("")
+		.setColor("FF0000")
 		.addField("Username", `${member.user.username}#${member.user.discriminator}`, true)
 		.setFooter(`${Timestamp.now()}`)
 		.setThumbnail(`${member.user.avatarURL()}`);

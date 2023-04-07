@@ -6,8 +6,8 @@
     "discord.js": "^12.5.3"
   },
   "devDependencies": {
-    "typescript": "^4.6.2",
-    "@types/node": "^17.0.21"
+    "typescript": "^5.0.4",
+    "@types/node": "^18.15.11"
   },
   "scripts": {
     "start": "npx tsc && cd target && node Main.js"
